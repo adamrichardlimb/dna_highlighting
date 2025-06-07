@@ -3,7 +3,6 @@ local function has_dna(ent)
   if ent:GetClass() == "prop_ragdoll" and ent.killer_sample and ent.killer_sample.t > CurTime() then
     return true
   end
-  print(ent:GetClass())
   return istable(ent.fingerprints) and #ent.fingerprints > 0 and (ent.AllowDrop or ent:GetClass() == "ent_blood_dna")
 end
 
@@ -44,7 +43,6 @@ if CLIENT then
 
   net.Receive("dna_highlights", function (len)
     entities_to_highlight = net.ReadEntity()
-    print(entities_to_highlight)
     table.insert(highlighted_entities, entities_to_highlight)
   end)
 else
